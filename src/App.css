@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width:100vw;
+  background: linear-gradient(to bottom right, #6C63FF, #19D3DA);
+  overflow: hidden;
+}
+
+@keyframes star-fall {
+  0% {
+    transform: translateY(90vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(120%);
+    opacity: 0.5;
+  }
+}
+
+@keyframes star-up {
+  0% {
+    transform: translateY(-60vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0.5;
+  }
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://media.istockphoto.com/id/497704194/photo/shooting-star.jpg?s=612x612&w=0&k=20&c=kSxpUlWBPjB8q6BGPxzBu9cklpwDREIAZT0ILfhG-Io=') repeat;
+  animation: star-fall 5s linear infinite;
+  pointer-events: none;
+}
+
+.container::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://media.istockphoto.com/id/497704194/photo/shooting-star.jpg?s=612x612&w=0&k=20&c=kSxpUlWBPjB8q6BGPxzBu9cklpwDREIAZT0ILfhG-Io=') repeat;
+  animation: star-up 5s linear infinite;
+  pointer-events: none;
+}
+
+
+.todo-container {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.todo-input {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  /* margin-bottom: 10px; */
+  margin : 4px 5px;
+  width: 300px;
+}
+
+.add-button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+}
+
+.todo-item {
+  margin: 10px 0;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: solid 2px #a06827;
+  background: transparent;
+  color: red;
+  cursor: pointer;
+}
+
+
+
