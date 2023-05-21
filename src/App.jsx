@@ -6,10 +6,16 @@ import './App.css';
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
+  const [sortOrder, setSortOrder] = useState('asc');
+
 
   useEffect(() => {
     fetchTodos();
   }, []);
+
+  useEffect(() => {
+    sortTodos();
+  }, [sortOrder]);
 
   const fetchTodos = async () => {
     try {
@@ -59,6 +65,23 @@ const App = () => {
     setNewTodo(event.target.value);
   };
 
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+  };
+
+  const sortTodos = () => {
+    const sortedTodos = [...todos].sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+      if (sortOrder === 'asc') {
+        return nameA.localeCompare(nameB);
+      } else {
+        return nameB.localeCompare(nameA);
+      }
+    });
+    setTodos(sortedTodos);
+  };
+
   return (
     // <div>
     //   <input type="text" value={newTodo} onChange={handleInputChange} />
@@ -87,6 +110,18 @@ const App = () => {
         className="todo-input"
       />
       <button onClick={createTodo} className="add-button">Add</button>
+      <div className="sort-container">
+          <label htmlFor="sort-select">Sort by:</label>
+          <select
+            id="sort-select"
+            value={sortOrder}
+            onChange={handleSortChange}
+            className="sort-select"
+          >
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
       <ul className="todo-list">
         {todos.map(todo => (
           <li key={todo._id} className="todo-item">
