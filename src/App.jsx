@@ -19,7 +19,7 @@ const App = () => {
 
   const fetchTodos = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/api/todo');
+      const response = await axios.get('https://todo-list-rho-virid.vercel.app/api/todo');
       setTodos(response.data);
     } catch (error) {
       console.error(error);
@@ -28,7 +28,7 @@ const App = () => {
 
   const createTodo = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/api/todo', { name: newTodo });
+      const response = await axios.post('https://todo-list-rho-virid.vercel.app/api/todo', { name: newTodo });
       setTodos([...todos, response.data]);
       setNewTodo('');
     } catch (error) {
@@ -38,7 +38,7 @@ const App = () => {
 
   const editTodo = async (id, newName) => {
     try {
-      await axios.put(`http://127.0.0.1:5000/api/todo/${id}`, { name: newName });
+      await axios.put(`https://todo-list-rho-virid.vercel.app/api/todo/${id}`, { name: newName });
       const updatedTodos = todos.map(todo => {
         if (todo._id === id) {
           return { ...todo, name: newName };
@@ -53,7 +53,7 @@ const App = () => {
 
   const deleteTodo = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/api/todo/${id}`);
+      await axios.delete(`https://todo-list-rho-virid.vercel.app/api/todo/${id}`);
       const filteredTodos = todos.filter(todo => todo._id !== id);
       setTodos(filteredTodos);
     } catch (error) {
